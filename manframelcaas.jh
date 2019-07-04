@@ -1,0 +1,95 @@
+entity WPTP011SUSPCLM {
+                FLTNO String
+                SVCACCTNO String
+                CLMNO String
+                WRNTYQUENO Short
+                CLMRCVSTAMP Timestamp
+                SECTRVWI Short
+                DCNNO Short
+}
+entity WPTP021SUSPSECT {
+                FLTNO String
+                SVCACCTNO String
+                CLMNO String
+                CLMSECT Short
+                REGEXPS Float
+                MISCEXPS Float
+                LBREXPS Float
+                OTHREXPS Float
+                LUBEEXPS Float
+                COREEXPS Float
+}
+entity WPTP031SUSPREG {
+                FLTNO String
+                SVCACCTNO String
+                CLMNO String
+                CLMSECT String
+                REGRCVSEQNO Short
+                REGMODFPARTNO Short
+                REGQTY Float
+}
+entity WPTP041SUSPMISC {
+                FLTNO String
+                SVCACCTNO String
+                CLMNO String
+                CLMSECT String
+                MISCRCVSEQNO Short
+                MISCEXTAMT Float
+                MISCQTY Float
+                MISCDESC String
+}
+entity WPTP051SUSPCORE {
+                FLTNO String
+                SVCACCTNO String
+                CLMNO String
+                CLMSECT String
+                CORERCVSEQNO Short
+                COREEXTAMT Float
+                COREQTY Float
+                COREDESC String
+}
+entity WPTP061SUSPOTHR {
+                FLTNO String
+                SVCACCTNO String
+                CLMNO String
+                CLMSECT String
+                OTHRRCVSEQNO Short
+                OTHRPONO Short
+                OTHRDESC String
+                OTHRCHRG Float
+}
+entity WPTP080SUSPLBR {
+                FLTNO String
+                SVCACCTNO String
+                CLMNO String
+                CLMSECT String
+                LBRSEQNO String
+                MJRCMPNTGRPCD Date
+                WRNTYRPROPERCD Integer
+                WRNTYENGSERISCD Integer
+}
+enum Language {
+                FRENCH, ENGLISH, SPANISH
+}
+relationship OneToOne{
+                WPTP011SUSPCLM{wptp021suspsect} to WPTP021SUSPSECT
+}
+relationship OneToOne{
+                WPTP021SUSPSECT{wptp061suspothr} to WPTP061SUSPOTHR
+}
+relationship OneToOne{
+                WPTP021SUSPSECT{wptp051suspcore} to WPTP051SUSPCORE
+}
+relationship OneToOne{
+                WPTP021SUSPSECT{wptp080susplbr} to WPTP080SUSPLBR
+}
+relationship OneToOne{
+                WPTP021SUSPSECT{wptp031suspreg} to WPTP031SUSPREG
+}
+relationship OneToOne{
+                WPTP021SUSPSECT{wptp041suspmisc} to WPTP041SUSPMISC
+}
+
+paginate WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP021SUSPSECT,WPTP031SUSPREG,WPTP031SUSPREG,WPTP031SUSPREG,WPTP031SUSPREG,WPTP031SUSPREG,WPTP031SUSPREG,WPTP031SUSPREG,WPTP041SUSPMISC,WPTP041SUSPMISC,WPTP041SUSPMISC,WPTP041SUSPMISC,WPTP041SUSPMISC,WPTP041SUSPMISC,WPTP041SUSPMISC,WPTP041SUSPMISC,WPTP051SUSPCORE,WPTP051SUSPCORE,WPTP051SUSPCORE,WPTP051SUSPCORE,WPTP051SUSPCORE,WPTP051SUSPCORE,WPTP051SUSPCORE,WPTP051SUSPCORE,WPTP061SUSPOTHR,WPTP061SUSPOTHR,WPTP061SUSPOTHR,WPTP061SUSPOTHR,WPTP061SUSPOTHR,WPTP061SUSPOTHR,WPTP061SUSPOTHR,WPTP061SUSPOTHR,WPTP080SUSPLBR,WPTP080SUSPLBR,WPTP080SUSPLBR,WPTP080SUSPLBR,WPTP080SUSPLBR,WPTP080SUSPLBR,WPTP080SUSPLBR,WPTP080SUSPLBR with pagination
+
+paginate WPTP011SUSPCLM,WPTP011SUSPCLM,WPTP011SUSPCLM,WPTP011SUSPCLM,WPTP011SUSPCLM,WPTP011SUSPCLM,WPTP011SUSPCLM with infinite-scroll
